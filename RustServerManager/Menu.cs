@@ -42,7 +42,7 @@ namespace RustServerManager
 		
         public void listMenu()
         {
-            int choice;
+            //int choice;
 			
             Console.Clear();
 			
@@ -90,7 +90,7 @@ namespace RustServerManager
                         choice = Convert.ToInt32(Console.ReadLine());
                         break;
                     }
-                    catch (Exception e)
+                    catch (Exception )
                     {
                     }
                 }
@@ -142,40 +142,40 @@ namespace RustServerManager
 
         public void setup()
         {
+            var server = new RustServer();
             //request initial server information for buildArgs
             Console.WriteLine("Lets setup your server startup variables");
             Console.WriteLine("----------------\n");
             //Set initial values
-            Console.Write("Hostname (" + RustServer.hostName + ") : ");
-            RustServer.hostName = Convert.ToString(Console.ReadLine());
+            Console.Write("Hostname (" + server.hostName + ") : ");
+            server.hostName = Convert.ToString(Console.ReadLine());
 
-            Console.Write("Identity aka save folder (" + RustServer.identity + ") : ");
-            RustServer.identity = Convert.ToString(Console.ReadLine());
+            Console.Write("Identity aka save folder (" + server.identity + ") : ");
+            server.identity = Convert.ToString(Console.ReadLine());
 
-            Console.Write("Seed (" + RustServer.m_seed + ") : ");
-            RustServer.m_seed = Convert.ToString(Console.ReadLine());
+            Console.Write("Seed (" + server.m_seed + ") : ");
+            server.m_seed = Convert.ToString(Console.ReadLine());
 
-            Console.Write("World Size (" + RustServer.m_worldSize + ") : ");
-            RustServer.m_worldSize = Convert.ToInt32(Console.ReadLine());
+            Console.Write("World Size (" + server.m_worldSize + ") : ");
+            server.m_worldSize = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Port number (" + RustServer.m_portNumber + ") : ");
-            RustServer.m_portNumber = Convert.ToString(Console.ReadLine());
+            Console.Write("Port number (" + server.m_portNumber + ") : ");
+            server.m_portNumber = Convert.ToString(Console.ReadLine());
 
-            Console.Write("Max players (" + RustServer.m_maxPlayers + ") : ");
-            RustServer.m_maxPlayers = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Max players (" + server.m_maxPlayers + ") : ");
+            server.m_maxPlayers = Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Did you want to setup RCON (no)? ");
             var rcon = Convert.ToString(Console.ReadLine());
             if (rcon.ToLower() == "yes")
             {
-                Console.Write("Rcon Port (" + RustServer.m_rconPort + ") : ");
-                RustServer.m_rconPort = Convert.ToString(Console.ReadLine());
-                Console.Write("Rcon Password (" + RustServer.m_rconPassword + ") : ");
-                RustServer.m_rconPassword = Convert.ToString(Console.ReadLine());
+                Console.Write("Rcon Port (" + server.m_rconPort + ") : ");
+                server.m_rconPort = Convert.ToString(Console.ReadLine());
+                Console.Write("Rcon Password (" + server.m_rconPassword + ") : ");
+                server.m_rconPassword = Convert.ToString(Console.ReadLine());
             }
             Console.Write("Let's review your server start settings:\n");
-            RustServer.summarize();
-            Console.Write(test);
+            Console.Write(server.summarize());
             Console.Write("\n Are these settings correct? (yes)");
             var confirm = Convert.ToString(Console.ReadLine());
             if (confirm.ToLower() == "no")
@@ -201,9 +201,10 @@ namespace RustServerManager
         public void Start()
         {
             var process = new Process();
+            var server = new RustServer();
             process.StartInfo.WorkingDirectory = @".\Server";
             process.StartInfo.FileName = "RustDedicated.exe";
-            process.StartInfo.Arguments = RustServer.buildArgs();
+            process.StartInfo.Arguments = server.buildArgs();
             process.StartInfo.UseShellExecute = true;
             process.Start();
             //need to save process ID to access it later

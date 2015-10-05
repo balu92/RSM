@@ -1,1 +1,12 @@
-﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="RustServerManager/RustServerManager.csproj" />
+﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="RustServerManager/RustServerManager.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="RustServerManager/Menu.cs">
+    <Files>
+      <File FileName="RustServerManager/Menu.cs" Line="202" Column="10" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
