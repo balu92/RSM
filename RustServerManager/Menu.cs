@@ -200,15 +200,19 @@ namespace RustServerManager
 
         public void Start()
         {
+			string tostart = "filter";
+			var server = m_list.list.Find(s => s.hostName == tostart);
             var process = new Process();
-            var server = new RustServer();
             process.StartInfo.WorkingDirectory = @".\Server";
             process.StartInfo.FileName = "RustDedicated.exe";
             process.StartInfo.Arguments = server.buildArgs();
             process.StartInfo.UseShellExecute = true;
             process.Start();
-            //need to save process ID to access it later
-            Console.Write("Process ID: " + process.Id);
+
+			server.m_process = process;
+			server.m_isRunning = true;
+
+			process.Exited += (object sender, EventArgs e) => server.m_isRunning = false;
         }
     }
 }

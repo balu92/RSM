@@ -17,7 +17,12 @@ namespace RustServerManager
 	
     [Serializable]
     public class RustServer
-    {
+	{
+		[NonSerialized]
+		public System.Diagnostics.Process m_process = null;
+		[NonSerialized]
+		public bool m_isRunning = false;
+
         public string m_hostName;
         public string m_identity;
         public string m_portNumber;
